@@ -1,6 +1,6 @@
 from aioprometheus_thin import init_metrics, runner
 from aioprometheus_thin.configs import MetricsTypes
-from collectors.build_metric import collector
+from collector import collect
 import socket
 
 const_labels = {'host': socket.gethostname()}

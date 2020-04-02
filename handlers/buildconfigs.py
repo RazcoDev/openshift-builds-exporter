@@ -2,7 +2,6 @@ import json
 
 from config.urls import BUILDCONFIG_URL
 from interfaces.openshift_api import Api
-from templates.buildconfig import BUILDCONFIG_TEMPLATE
 
 
 async def create_buildconfig(openshift_api: Api, namespace: str, buildconfig_template: json) -> json:

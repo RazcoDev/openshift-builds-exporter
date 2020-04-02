@@ -2,6 +2,7 @@ import json
 from interfaces.openshift_api import Api
 from config.urls import BUILD_URL, IMAGE_URL, INSTANTIATE_URL, INSTANTIATE_JSON
 
+
 async def instantiate_build(openshift_api: Api, namespace: str, buildconfig: str) -> json:
     api_route = INSTANTIATE_URL.format(namespace, buildconfig)
     json_body = INSTANTIATE_JSON

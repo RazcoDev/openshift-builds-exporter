@@ -13,7 +13,7 @@ BUILDCONFIG_TEMPLATE = {
     },
     "spec": {
         "nodeSelector": {
-            'kubernetes.io/hostname': 'os-pub-app02'
+            "kubernetes.io/hostname": "os-node"
         },
         "output": {
             "to": {

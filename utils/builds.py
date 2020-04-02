@@ -1,0 +1,1 @@
+def is_build_finished(build_json: dict)

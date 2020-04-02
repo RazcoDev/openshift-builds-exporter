@@ -4,9 +4,9 @@ from utils.aiofetch import fetch, Methods
 
 
 class Api:
-    def __init__(self, url, token, name):
+    def __init__(self, url, token, env_name):
         self.token = token
-        self.name = name
+        self.name = env_name
         self.url = url
 
     def __repr__(self):
