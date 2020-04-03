@@ -5,7 +5,7 @@ from config.urls import IMAGESTREAM_URL
 
 
 async def create_imagestream(openshift_api: Api, namespace: str, imagestream_template: json) -> json:
-    api_route = IMAGESTREAM_URL.format(namespace, None)
+    api_route = IMAGESTREAM_URL.format(namespace,'')
     res = await openshift_api.create_resource(api_route, imagestream_template)
     return json.loads(res)
 

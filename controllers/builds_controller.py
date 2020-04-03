@@ -1,18 +1,25 @@
 from interfaces.openshift_api import Api
 from handlers.builds import instantiate_build, watch_build
+from utils.builds import is_build_finished, get_finished_build_duration
 
 
-def instantiate_builds(openshift_api: Api, namespace: str, buildconfigs_names_list: list):
+async def instantiate_builds(openshift_api: Api, namespace: str, buildconfigs_names_list: list):
     res = []
     for buildconfig_name in buildconfigs_names_list:
         res.append(await instantiate_build(openshift_api, namespace, buildconfig_name))
     return res
 
 
-def get_builds_results_list(openshift_api: Api, namespace: str, builds_names_list: list) -> list:
-    results_list = []
-    for build_name in builds_names_list:
-        results_list.append(await watch_build(openshift_api, namespace, build_name))
-    for result in results_list:
-        results_list.append(is_build_finished(result))
-    return res
+async def get_builds_results_json(openshift_api: Api, namespace: str, builds_json_list: list) -> list:
+    for idx, build in enumerate(builds_json_list):
+        builds_json_list[idx]['result'] = await watch_build(openshift_api, namespace, build['build_name'])
+    return builds_json_list
+
+
+async def get_builds_duration_json_list(openshift_api: Api, namespace: str, builds_json_list: list) -> list:
+    for idx, build in enumerate(builds_json_list):
+        if builds_json_list[idx]['result'] is True:
+            builds_json_list[idx]['result'] = await watch_build(openshift_api, namespace, build['build_name'])
+        else:
+            builds_json_list[idx]['result'] = -1
+    return builds_json_list

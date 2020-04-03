@@ -5,7 +5,7 @@ from interfaces.openshift_api import Api
 
 
 async def create_buildconfig(openshift_api: Api, namespace: str, buildconfig_template: json) -> json:
-    api_route = BUILDCONFIG_URL.format(namespace, None)
+    api_route = BUILDCONFIG_URL.format(namespace, '')
     res = await openshift_api.create_resource(api_route, buildconfig_template)
     return json.loads(res)
 

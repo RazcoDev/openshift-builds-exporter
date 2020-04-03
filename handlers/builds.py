@@ -6,6 +6,7 @@ from config.urls import BUILD_URL, IMAGE_URL, INSTANTIATE_URL, INSTANTIATE_JSON
 async def instantiate_build(openshift_api: Api, namespace: str, buildconfig: str) -> json:
     api_route = INSTANTIATE_URL.format(namespace, buildconfig)
     json_body = INSTANTIATE_JSON
+    json_body['metadata']['name'] = buildconfig
     res = await openshift_api.create_resource(api_route, json_body)
     return json.loads(res)
 

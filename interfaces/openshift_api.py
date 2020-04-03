@@ -21,7 +21,6 @@ class Api:
     async def create_resource(self, api_route: str, json_body: dict = None, verify: bool = False):
         endpoint = self._get_endpoint(api_route)
         headers = self._get_auth_header()
-
         return await fetch(method=Methods.POST, url=endpoint, verify=verify, headers=headers, json_body=json_body)
 
     async def delete_resource(self, api_route: str, json_body: dict = None, verify: bool = False):

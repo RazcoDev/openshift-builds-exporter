@@ -3,7 +3,7 @@ from interfaces.openshift_api import Api
 from utils.buildconfigs import get_formatted_buildconfig_template
 
 
-def create_buildconfigs(openshift_api: Api, namespace: str, buildconfigs_names_list: list,
+async def create_buildconfigs(openshift_api: Api, namespace: str, buildconfigs_names_list: list,
                         nodes_names_list: list, imagestreams_names_list) -> list:
     res = []
     for buildconfig_name, node_name, imagestream_name in zip(buildconfigs_names_list, nodes_names_list,
@@ -14,7 +14,7 @@ def create_buildconfigs(openshift_api: Api, namespace: str, buildconfigs_names_l
     return res
 
 
-def delete_buildconfigs(openshift_api: Api, namespace: str, buildconfigs_names_list: list) -> list:
+async def delete_buildconfigs(openshift_api: Api, namespace: str, buildconfigs_names_list: list) -> list:
     res = []
     for buildconfig_name in buildconfigs_names_list:
         res.append(await delete_buildconfig(openshift_api, namespace, buildconfig_name))
