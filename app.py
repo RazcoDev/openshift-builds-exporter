@@ -1,7 +1,11 @@
+from os import environ
 from aioprometheus_thin import init_metrics, runner
-from metrics import CUSTOM_METRICS_LIST
+
 from collector import collect
-import socket
+from metrics import CUSTOM_METRICS_LIST
+
+PORT = environ.get('PORT')
+HOST = environ.get('HOST')
 
 
 def get_metrics_list(custom_metircs_list: list = CUSTOM_METRICS_LIST) -> list:
@@ -11,7 +15,7 @@ def get_metrics_list(custom_metircs_list: list = CUSTOM_METRICS_LIST) -> list:
 
 if __name__ == '__main__':
     metrics_list = get_metrics_list()
-    runner.run_async(metrics_list, '127.0.0.1', 5000, collect)
+    runner.run_async(metrics_list, HOST, PORT, collect)
 
 
 
