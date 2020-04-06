@@ -49,9 +49,6 @@ BUILDCONFIG_TEMPLATE = {
                 "type": "ImageChange"
             },
             {
-                "type": "ConfigChange"
-            },
-            {
                 "generic": {
                     "secret": "9cdabebd0d4daa89"
                 },

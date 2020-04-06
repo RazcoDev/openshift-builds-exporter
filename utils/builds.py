@@ -16,7 +16,7 @@ def get_finished_build_duration(build_json: dict) -> int:
 
 
 async def get_builds_json_list(instantiate_results_list: list) -> list:
-    builds_json_list =[]
+    builds_json_list = []
     for result in instantiate_results_list:
         if result is not None and result['kind'] not in 'Status':
             build_json = {'build_name': result['metadata']['name'],
@@ -25,3 +25,10 @@ async def get_builds_json_list(instantiate_results_list: list) -> list:
             builds_json_list.append(build_json)
     return builds_json_list
 
+
+def get_completed_builds_from_results_json_list(results_json_list: list) -> list:
+    completed_builds_list = []
+    for result in results_json_list:
+        if result['result'] is not -1:
+            completed_builds_list.append(result['build_name'])
+    return completed_builds_list
