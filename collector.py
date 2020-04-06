@@ -15,6 +15,7 @@ TIMEOUT = environ.get('TIMEOUT')
 WATCH_SLEEP = environ.get('WATCH_SLEEP')
 COLLECT_INTERVAL = environ.get('COLLECT_INTERVAL')
 
+
 async def collect(metrics_list: list) -> None:
     url = ENV_URL
     token = DEFAULT_TOKEN
