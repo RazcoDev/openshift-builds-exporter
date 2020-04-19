@@ -1,1 +1,2 @@
 aioprometheus_thin
+aiohttp

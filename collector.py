@@ -1,7 +1,7 @@
 import asyncio
 from os import environ
 
-from handlers.nodes import get_nodes_names_list
+from controllers.nodes_controller import get_nodes_names_list_by_labels
 from interfaces.openshift_api import Api
 from tasks.builds import build_task
 from tasks.resource_init import delete_resources, create_resources
@@ -14,7 +14,8 @@ NAMESPACE = environ.get('OPENSHIFT_BUILD_NAMESPACE')
 TIMEOUT = environ.get('TIMEOUT')
 WATCH_SLEEP = environ.get('WATCH_SLEEP')
 COLLECT_INTERVAL = environ.get('COLLECT_INTERVAL')
-
+LABEL_NAME = environ.get('LABEL_NAME')
+LABEL_VALUE = environ.get('LABEL_VALUE')
 
 async def collect(metrics_list: list) -> None:
     url = ENV_URL
@@ -29,7 +30,7 @@ async def collect(metrics_list: list) -> None:
     build_duration_metric = metrics_list[1]
     while True:
         openshift_api = Api(url, token, env_name)
-        nodes_names_list = await get_nodes_names_list(openshift_api)
+        nodes_names_list = await get_nodes_names_list_by_labels(openshift_api, LABEL_NAME,LABEL_VALUE)
 
         # Creating Imagestreams and then Buildconfigs for initial setup
         await create_resources(openshift_api, namespace, nodes_names_list)
