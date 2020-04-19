@@ -11,4 +11,5 @@ INSTANTIATE_JSON = {
 BUILDCONFIG_URL = '/apis/build.openshift.io/v1/namespaces/{}/buildconfigs/{}'
 IMAGESTREAM_URL = '/apis/image.openshift.io/v1/namespaces/{}/imagestreams/{}'
 NODES_URL = '/api/v1/nodes'
-
+DEPLOYMENTCONFIG_URL = '/apis/apps.openshift.io/v1/namespaces/{}/deploymentconfigs/{}'
+DEPLOYMENT_URL = '/api/v1/namespaces/{}/replicationcontrollers/{}'
