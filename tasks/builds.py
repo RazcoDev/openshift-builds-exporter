@@ -20,4 +20,3 @@ async def build_task(openshift_api: Api, namespace: str, nodes_names_list: list,
         await asyncio.sleep(watch_sleep)
     return await get_builds_duration_json_list(openshift_api, namespace, builds_json_list)
 
-# TODO: Add master infras exclude

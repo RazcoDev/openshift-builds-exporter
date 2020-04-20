@@ -20,3 +20,8 @@ async def delete_deployment(openshift_api: Api, namespace: str, deployment_name:
     api_route = DEPLOYMENT_URL.format(namespace, deployment_name)
     res = await  openshift_api.delete_resource(api_route)
     return json.loads(res)
+
+async def get_deployment(openshift_api: Api, namespace: str, deployment_name: str) -> json:
+    api_route = DEPLOYMENT_URL.format(namespace, deployment_name)
+    res = await  openshift_api.get_resource(api_route)
+    return json.loads(res)

@@ -10,3 +10,7 @@ def get_formatted_deploymentconfigs_template(deploymentconfig_name: str, namespa
 
 def get_deploymentconfig_names_list(nodes_names_list: list) -> list:
     return [node_name + '-dc' for node_name in nodes_names_list]
+
+def get_deployments_names_list(nodes_names_list: list) -> list:
+    return [node_name + '-dc-1' for node_name in nodes_names_list]
+

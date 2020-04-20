@@ -3,7 +3,6 @@ from controllers.buildconfig_controller import create_buildconfigs, delete_build
 from controllers.imagestreams_controller import create_imagestreams, delete_imagestreams
 from controllers.images_controller import delete_images
 from controllers.deploymentconfig_controller import create_deploymentconfigs, delete_deploymentconfigs
-from controllers.deploy_controller import delete_deployments
 from utils.builds import get_completed_builds_from_results_json_list
 from utils.buildconfigs import get_buildconfigs_names_list
 from utils.imagestreams import get_imagestreams_names_list
@@ -30,7 +29,6 @@ async def delete_resources(openshift_api: Api, namespace: str, nodes_names_list:
     completed_builds_list = get_completed_builds_from_results_json_list(results_json_list)
 
     images_deletion_res = await delete_images(openshift_api, namespace, completed_builds_list)
-    # deployments_deletion_res = await delete_deployments(openshift_api, namespace, deploymentconfigs_names_list)
     imagestreams_deletion_res = await delete_imagestreams(openshift_api, namespace, imagestreams_names_list)
     buildconfig_deletion_res = await delete_buildconfigs(openshift_api, namespace, buildconfigs_names_list)
     deploymentconfigs_deletion_res = await delete_deploymentconfigs(openshift_api, namespace,
